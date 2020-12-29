@@ -6,6 +6,7 @@ import CasesScreen from "../screens/CasesScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import TabButton from "../components/TabButton";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { View, Text } from "react-native";
 const Tab = createBottomTabNavigator();
 
@@ -14,42 +15,29 @@ const AppNavigator = () => (
     <Tab.Screen
       name="deaths"
       component={DeathsScreen}
-      options={({ navigation }) => ({
-        tabBarIcon: () => (
-          <TabButton
-            bgColor="red"
-            name="emoticon-outline"
-            onPress={() => navigation.navigate("deaths")}
-          />
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome5 name="book-dead" size={size} color={color} />
         ),
-      })}
+      }}
     />
     <Tab.Screen
       name="recovery"
       component={RecoveriesScreen}
-      options={({ navigation }) => ({
-        tabBarIcon: () => (
-          <TabButton
-            bgColor="green"
-            name="emoticon-outline"
-            onPress={() => navigation.navigate("recovery")}
-          />
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome5 name="address-book" size={size} color={color} />
         ),
-        tabBarLabel: "",
-      })}
+      }}
     />
     <Tab.Screen
       name="cases"
       component={CasesScreen}
-      options={({ navigation }) => ({
-        tabBarIcon: () => (
-          <TabButton
-            bgColor="yellow"
-            name="emoticon-outline"
-            onPress={() => navigation.navigate("cases")}
-          />
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <FontAwesome5 name="book-medical" size={size} color={color} />
         ),
-      })}
+      }}
     />
   </Tab.Navigator>
 );
