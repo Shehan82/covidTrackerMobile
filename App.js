@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./app/navigations/AppNavigator";
+import Constant from "expo-constants";
 
 export default function App() {
   return (

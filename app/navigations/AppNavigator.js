@@ -7,8 +7,8 @@ const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => (
   <Tab.Navigator>
-    <Tab.Screen name="recovery" component={RecoveriesScreen} />
     <Tab.Screen name="deaths" component={DeathsScreen} />
+    <Tab.Screen name="recovery" component={RecoveriesScreen} />
     <Tab.Screen name="cases" component={CasesScreen} />
   </Tab.Navigator>
 );
