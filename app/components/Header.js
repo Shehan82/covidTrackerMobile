@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    height: 70,
+    height: 50,
+    paddingTop: 10,
     // borderColor: "blue",
     // borderWidth: 2,
-    padding: 10,
   },
   headerLeft: {
     // borderColor: "red",
