@@ -93,7 +93,11 @@ const DeathsScreen = ({ name }) => {
   return (
     <ScrollView style={styles.container}>
       <Header onPress={modalOn} country={selectedCountry} />
-      <DetailsBox />
+      <Text>{coronaInfo.country}</Text>
+      <DetailsBox
+        todayDeaths={coronaInfo.todayDeaths}
+        totalDeaths={coronaInfo.deaths}
+      />
 
       <VictoryChart
         domainPadding={10}
