@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Modal } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Modal,
+  TouchableWithoutFeedback,
+} from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
 import DetailsBox from "../components/DetailsBox";
@@ -56,9 +63,13 @@ const DeathsScreen = () => {
 
   console.log(countries);
 
+  const modalOn = () => {
+    setModalVisible(true);
+  };
+
   return (
     <ScrollView style={styles.container}>
-      <Header />
+      <Header onPress={modalOn} />
       <DetailsBox />
 
       <VictoryChart
@@ -77,8 +88,16 @@ const DeathsScreen = () => {
       <Modal animationType="slide" visible={modalVisible}>
         <FlatList
           data={countries}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
-          keyExtractor={(item) => item.value}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <TouchableWithoutFeedback
+              onPress={() => {
+                setModalVisible(false);
+              }}
+            >
+              <Text>{item.name}</Text>
+            </TouchableWithoutFeedback>
+          )}
         />
       </Modal>
     </ScrollView>

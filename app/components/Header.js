@@ -1,16 +1,24 @@
 import React from "react";
-import { StyleSheet, Text, View, Platform } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  TouchableWithoutFeedback,
+} from "react-native";
 
-const Header = () => {
+const Header = ({ onPress }) => {
   return (
-    <View style={styles.headerContainer}>
-      <View style={styles.headerLeft}>
-        <Text style={styles.txt}>COVID 19 TRACKER</Text>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.headerContainer}>
+        <View style={styles.headerLeft}>
+          <Text style={styles.txt}>COVID 19 TRACKER</Text>
+        </View>
+        <View style={styles.headerRight}>
+          <Text style={styles.txt}>I am right</Text>
+        </View>
       </View>
-      <View style={styles.headerRight}>
-        <Text style={styles.txt}>I am right</Text>
-      </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
