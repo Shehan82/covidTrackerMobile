@@ -38,30 +38,33 @@ const DeathsScreen = ({
       <Graph url={url} keyword="Deaths" country={selectedCountry} />
 
       <Modal animationType="slide" visible={modalVisible}>
-        <TouchableWithoutFeedback onPress={onPressWorldWide}>
-          <Text>WorldWide</Text>
-        </TouchableWithoutFeedback>
-        <FlatList
-          data={countryList}
-          keyExtractor={(item) => item.name}
-          renderItem={({ item }) => (
-            <TouchableWithoutFeedback
-              style={styles.container}
-              onPress={() => {
-                onPressSetSelectedCountry(item.name);
-                onPressModalVisiblityOff();
-              }}
-            >
-              <View>
-                <Text style={styles.txt}>{item.name}</Text>
-                <Image
-                  style={{ width: 10, height: 10 }}
-                  source={{ uri: item.flag }}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-          )}
-        />
+        <View style={styles.modalContainer}>
+          <TouchableWithoutFeedback onPress={onPressWorldWide}>
+            <View style={styles.wwContainer}>
+              <Text>WorldWide</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <FlatList
+            data={countryList}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => (
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  onPressSetSelectedCountry(item.name);
+                  onPressModalVisiblityOff();
+                }}
+              >
+                <View style={styles.tContainer}>
+                  <Text style={styles.txt}>{item.name}</Text>
+                  <Image
+                    style={{ width: 30, height: 30, borderRadius: 15 }}
+                    source={{ uri: item.flag }}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
+            )}
+          />
+        </View>
       </Modal>
     </View>
   );
@@ -73,5 +76,29 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     paddingTop: Constant.statusBarHeight,
+  },
+  modalContainer: {
+    paddingTop: 25,
+  },
+  tContainer: {
+    borderWidth: 2,
+    borderColor: "red",
+    width: "50%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 5,
+    marginLeft: "auto",
+    marginRight: "auto",
+    alignItems: "center",
+  },
+  wwContainer: {
+    borderWidth: 2,
+    borderColor: "red",
+    width: "50%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 5,
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 });
