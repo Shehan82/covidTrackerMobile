@@ -1,13 +1,16 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import {
   VictoryBar,
   VictoryChart,
   VictoryTheme,
   VictoryTooltip,
+  VictoryLabel,
+  VictoryAxis,
+  VictoryArea,
 } from "victory-native";
 
-const data = [
+const data1 = [
   { quarter: 1, earnings: 13000 },
   { quarter: 2, earnings: 16500 },
   { quarter: 3, earnings: 14250 },
@@ -20,26 +23,119 @@ const data = [
   { quarter: 10, earnings: 5000 },
 ];
 
-const Graph = () => {
+const Graph = ({ url, country }) => {
+  console.log(url);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const diff = (cases) => {
+          var dataArr = Object.values(cases);
+          var newArr = [];
+          for (var i = 0; i < dataArr.length - 1; i++) {
+            var difference = dataArr[i + 1] - dataArr[i];
+            newArr.push(difference);
+          }
+
+          //   console.log(newArr);
+          return newArr;
+        };
+
+        const labels = (cases) => {
+          var labelsArr = Object.keys(cases);
+          var newLabelsArr = [];
+          for (var i = 1; i < labelsArr.length; i++) {
+            var lb = labelsArr[i];
+            newLabelsArr.push(lb);
+          }
+
+          return newLabelsArr;
+        };
+
+        var u = "";
+        if (country === "WorldWide") {
+          u = data.deaths;
+        } else {
+          u = data.timeline.deaths;
+        }
+
+        // console.log(diff(u));
+        // console.log(labels(u));
+
+        var labelArray = labels(u);
+        var diffArray = diff(u);
+        let dataA = [];
+
+        for (var i = 0; i < 10; i++) {
+          dataA.push({ date: labelArray[i], data: diffArray[i] });
+        }
+
+        setData(dataA);
+
+        // console.log(dataA);
+      });
+  }, [url]);
+
   return (
-    <View>
-      <VictoryChart
-        domainPadding={10}
-        width={350}
-        theme={VictoryTheme.material}
-      >
-        <VictoryBar
-          style={{ data: { fill: "#c43a31" } }}
+    <View style={styles.container}>
+      <View style={styles.subContainer}>
+        <View style={styles.txtContainer}>
+          <Text style={styles.txtHeader}>{country} Corona Deaths</Text>
+          <Text style={styles.txtHeader}> last 10 Days</Text>
+        </View>
+        <FlatList
           data={data}
-          x="quarter"
-          y="earnings"
-          barRatio={0.8}
+          keyExtractor={(item) => item.date}
+          renderItem={({ item }) => (
+            <View style={styles.deathList}>
+              <Text>{item.date}</Text>
+              <Text>{item.data}</Text>
+            </View>
+          )}
         />
-      </VictoryChart>
+      </View>
     </View>
   );
 };
 
 export default Graph;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    borderColor: "blue",
+    borderWidth: 2,
+  },
+  subContainer: {
+    width: "70%",
+    backgroundColor: "white",
+    height: 250,
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    borderColor: "red",
+    borderWidth: 2,
+    paddingTop: 5,
+  },
+  deathList: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // borderColor: "red",
+    // borderWidth: 2,
+    width: 130,
+  },
+  txtContainer: {
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  txtHeader: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});

@@ -51,8 +51,8 @@ const DeathsScreen = ({ name }) => {
     console.log(selectedCountry);
     const link =
       selectedCountry === "WorldWide"
-        ? "https://disease.sh/v3/covid-19/historical/all?lastdays=10"
-        : `https://disease.sh/v3/covid-19/historical/${selectedCountry}?lastdays=10`;
+        ? "https://disease.sh/v3/covid-19/historical/all?lastdays=11"
+        : `https://disease.sh/v3/covid-19/historical/${selectedCountry}?lastdays=11`;
 
     // const link = `https://disease.sh/v3/covid-19/historical/${countryCode}?lastdays=30`;
     setUrl(link);
@@ -69,14 +69,14 @@ const DeathsScreen = ({ name }) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Header onPress={modalOn} country={selectedCountry} />
       <DetailsBox
         todayDeaths={coronaInfo.todayDeaths}
         totalDeaths={coronaInfo.deaths}
       />
 
-      <Graph />
+      <Graph url={url} country={selectedCountry} />
 
       <Modal animationType="slide" visible={modalVisible}>
         <TouchableWithoutFeedback
@@ -102,7 +102,7 @@ const DeathsScreen = ({ name }) => {
           )}
         />
       </Modal>
-    </ScrollView>
+    </View>
   );
 };
 
