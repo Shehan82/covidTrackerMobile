@@ -40,6 +40,11 @@ const DeathsScreen = ({
 
       <Modal animationType="slide" visible={modalVisible}>
         <View style={styles.modalContainer}>
+          <TouchableWithoutFeedback onPress={onPressModalVisiblityOff}>
+            <View style={styles.closeContainer}>
+              <Text style={styles.txtClose}>Close</Text>
+            </View>
+          </TouchableWithoutFeedback>
           <FlatList
             data={countryList}
             keyExtractor={(item) => item.name}
@@ -82,6 +87,19 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     paddingTop: 25,
+  },
+  txtClose: {
+    fontSize: 18,
+    color: "blue",
+  },
+  closeContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 5,
+    marginLeft: "auto",
+    marginRight: "auto",
+    alignItems: "center",
+    marginBottom: 20,
   },
   tContainer: {
     // borderWidth: 2,
