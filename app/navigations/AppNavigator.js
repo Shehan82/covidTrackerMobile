@@ -68,7 +68,20 @@ const AppNavigator = ({
     />
     <Tab.Screen
       name="cases"
-      component={CasesScreen}
+      // component={CasesScreen}
+      children={() => (
+        <CasesScreen
+          countryList={countryList}
+          onPressModalVisiblityOn={onPressModalVisiblityOn}
+          onPressModalVisiblityOff={onPressModalVisiblityOff}
+          selectedCountry={selectedCountry}
+          onPressWorldWide={onPressWorldWide}
+          onPressSetSelectedCountry={onPressSetSelectedCountry}
+          coronaInfo={coronaInfo}
+          modalVisible={modalVisible}
+          url={url}
+        />
+      )}
       options={{
         tabBarIcon: ({ color, size }) => (
           <FontAwesome5 name="book-medical" size={size} color={color} />
