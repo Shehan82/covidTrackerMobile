@@ -52,6 +52,10 @@ const DeathsScreen = ({
               <TouchableWithoutFeedback onPress={onPressWorldWide}>
                 <View style={styles.wwContainer}>
                   <Text style={styles.txt}>WorldWide</Text>
+                  <Image
+                    style={{ width: 30, height: 30, borderRadius: 15 }}
+                    source={require("../../assets/world.jpeg")}
+                  />
                 </View>
               </TouchableWithoutFeedback>
             )}
