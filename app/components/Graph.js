@@ -24,7 +24,7 @@ const data1 = [
   { quarter: 10, earnings: 5000 },
 ];
 
-const Graph = ({ url, country }) => {
+const Graph = ({ url, country, keyword }) => {
   console.log(url);
   const [data, setData] = useState([]);
 
@@ -57,10 +57,24 @@ const Graph = ({ url, country }) => {
         };
 
         var u = "";
-        if (country === "WorldWide") {
-          u = data.deaths;
+        if (keyword === "Deaths") {
+          if (country === "WorldWide") {
+            u = data.deaths;
+          } else {
+            u = data.timeline.deaths;
+          }
+        } else if (keyword === "Recovered") {
+          if (country === "WorldWide") {
+            u = data.recovered;
+          } else {
+            u = data.timeline.recovered;
+          }
         } else {
-          u = data.timeline.deaths;
+          if (country === "WorldWide") {
+            u = data.cases;
+          } else {
+            u = data.timeline.cases;
+          }
         }
 
         // console.log(diff(u));
