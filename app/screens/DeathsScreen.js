@@ -6,6 +6,7 @@ import {
   ScrollView,
   Modal,
   TouchableWithoutFeedback,
+  Image,
 } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
@@ -25,59 +26,6 @@ const DeathsScreen = ({
   modalVisible,
   url,
 }) => {
-  // const [countries, setCountries] = useState([]);
-  // const [modalVisible, setModalVisible] = useState(false);
-  // const [selectedCountry, setSelectedCountry] = useState("WorldWide");
-  // const [coronaInfo, setCoronaInfo] = useState({});
-  // const [url, setUrl] = useState(
-  //   "https://disease.sh/v3/covid-19/historical/all?lastdays=30"
-  // );
-
-  // useEffect(() => {
-  //   getCountries();
-  // }, []);
-
-  // useEffect(() => {
-  //   onSelectCountry();
-  // }, [selectedCountry]);
-
-  // const getCountries = async () => {
-  //   await fetch("https://disease.sh/v3/covid-19/countries")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const countries = data.map((country) => ({
-  //         name: country.country,
-  //         value: country.countryInfo.iso2,
-  //       }));
-  //       setCountries(countries);
-  //     });
-  // };
-
-  // const modalOn = () => {
-  //   setModalVisible(true);
-  // };
-
-  // const onSelectCountry = async () => {
-  //   console.log(selectedCountry);
-  //   const link =
-  //     selectedCountry === "WorldWide"
-  //       ? "https://disease.sh/v3/covid-19/historical/all?lastdays=11"
-  //       : `https://disease.sh/v3/covid-19/historical/${selectedCountry}?lastdays=11`;
-
-  //   // const link = `https://disease.sh/v3/covid-19/historical/${countryCode}?lastdays=30`;
-  //   setUrl(link);
-  //   const url =
-  //     selectedCountry === "WorldWide"
-  //       ? "https://disease.sh/v3/covid-19/all"
-  //       : `https://disease.sh/v3/covid-19/countries/${selectedCountry}`;
-
-  //   await fetch(url)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setCoronaInfo(data);
-  //     });
-  // };
-
   return (
     <View style={styles.container}>
       <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
@@ -104,7 +52,13 @@ const DeathsScreen = ({
                 onPressModalVisiblityOff();
               }}
             >
-              <Text style={styles.txt}>{item.name}</Text>
+              <View>
+                <Text style={styles.txt}>{item.name}</Text>
+                <Image
+                  style={{ width: 10, height: 10 }}
+                  source={{ uri: item.flag }}
+                />
+              </View>
             </TouchableWithoutFeedback>
           )}
         />
