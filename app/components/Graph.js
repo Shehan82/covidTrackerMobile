@@ -98,7 +98,9 @@ const Graph = ({ url, country, keyword }) => {
     <View style={styles.container}>
       <View style={styles.subContainer}>
         <View style={styles.txtContainer}>
-          <Text style={styles.txtHeader}>{country} Corona Deaths</Text>
+          <Text style={styles.txtHeader}>
+            {country} Corona {keyword}
+          </Text>
           <Text style={styles.txtHeader}> last 10 Days</Text>
         </View>
         <FlatList

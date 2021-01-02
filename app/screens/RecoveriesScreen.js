@@ -34,7 +34,7 @@ const RecoveriesScreen = ({
         title="Corona Recoverd"
       />
 
-      <Graph url={url} country={selectedCountry} />
+      <Graph url={url} keyword="Recovered" country={selectedCountry} />
 
       <Modal animationType="slide" visible={modalVisible}>
         <TouchableWithoutFeedback onPress={onPressWorldWide}>

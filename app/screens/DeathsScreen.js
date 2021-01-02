@@ -98,49 +98,17 @@ const DeathsScreen = ({
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
+              style={styles.container}
               onPress={() => {
                 onPressSetSelectedCountry(item.name);
                 onPressModalVisiblityOff();
               }}
             >
-              <Text>{item.name}</Text>
+              <Text style={styles.txt}>{item.name}</Text>
             </TouchableWithoutFeedback>
           )}
         />
       </Modal>
-
-      {/* <Header onPress={modalOn} country={selectedCountry} />
-      <DetailsBox
-        todayDeaths={coronaInfo.todayDeaths}
-        totalDeaths={coronaInfo.deaths}
-      />
-
-      <Graph url={url} country={selectedCountry} />
-
-      <Modal animationType="slide" visible={modalVisible}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            setSelectedCountry("WorldWide");
-            setModalVisible(false);
-          }}
-        >
-          <Text>WorldWide</Text>
-        </TouchableWithoutFeedback>
-        <FlatList
-          data={countries}
-          keyExtractor={(item) => item.name}
-          renderItem={({ item }) => (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                setSelectedCountry(item.name);
-                setModalVisible(false);
-              }}
-            >
-              <Text>{item.name}</Text>
-            </TouchableWithoutFeedback>
-          )}
-        />
-      </Modal> */}
     </View>
   );
 };

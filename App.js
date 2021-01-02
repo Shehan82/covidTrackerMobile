@@ -15,7 +15,7 @@ import AppNavigator from "./app/navigations/AppNavigator";
 
 export default function App() {
   const [countries, setCountries] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState("WorldWide");
   const [coronaInfo, setCoronaInfo] = useState({});
   const [url, setUrl] = useState(
@@ -37,6 +37,7 @@ export default function App() {
         const countries = data.map((country) => ({
           name: country.country,
           value: country.countryInfo.iso2,
+          flag: country.countryInfo.flag,
         }));
         setCountries(countries);
       });
