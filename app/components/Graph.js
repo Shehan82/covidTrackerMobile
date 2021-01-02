@@ -74,7 +74,7 @@ const Graph = ({ url, country }) => {
           dataA.push({ date: labelArray[i], data: diffArray[i] });
         }
 
-        setData(dataA);
+        setData(dataA.reverse());
 
         // console.log(dataA);
       });
@@ -110,19 +110,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
-    borderColor: "blue",
-    borderWidth: 2,
+    // borderColor: "blue",
+    // borderWidth: 2,
   },
   subContainer: {
     width: "70%",
     backgroundColor: "white",
-    height: 250,
+    height: Platform.OS === "ios" ? 280 : 320,
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
-    borderColor: "red",
-    borderWidth: 2,
-    paddingTop: 5,
+    // borderColor: "red",
+    // borderWidth: 2,
+    // paddingTop: 10,
   },
   deathList: {
     flexDirection: "row",
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     // borderColor: "red",
     // borderWidth: 2,
     width: 130,
+    marginVertical: 2,
   },
   txtContainer: {
     alignItems: "center",

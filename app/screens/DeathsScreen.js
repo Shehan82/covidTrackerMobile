@@ -93,7 +93,7 @@ const DeathsScreen = ({ name }) => {
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
               onPress={() => {
-                setSelectedCountry(item.value);
+                setSelectedCountry(item.name);
                 setModalVisible(false);
               }}
             >
