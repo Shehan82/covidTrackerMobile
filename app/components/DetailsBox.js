@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, Text, View, Platform } from "react-native";
 import Apptext from "./Apptext";
 
-const DetailsBox = ({ today, total }) => {
+const DetailsBox = ({ today, total, title }) => {
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
-        <Apptext title="Corona Deaths" size={28} marginBtm={15} />
+        <Apptext title={title} size={28} marginBtm={15} />
         <Apptext title={today} size={40} />
         <Apptext title="today" size={16} marginBtm={15} />
         <Apptext title={`${total}` + " total"} size={18} />
