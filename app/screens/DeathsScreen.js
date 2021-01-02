@@ -18,6 +18,7 @@ import {
   VictoryTheme,
   VictoryTooltip,
 } from "victory-native";
+import { FlatList } from "react-native-gesture-handler";
 
 const data = [
   { quarter: 1, earnings: 13000 },
@@ -34,6 +35,7 @@ const data = [
 
 const DeathsScreen = () => {
   const [countries, setCountries] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   useEffect(() => {
     // send a request , wait and do
 
@@ -72,8 +74,12 @@ const DeathsScreen = () => {
           barRatio={0.8}
         />
       </VictoryChart>
-      <Modal animationType="slide" visible={true}>
-        <Text>hello i am modal</Text>
+      <Modal animationType="slide" visible={modalVisible}>
+        <FlatList
+          data={countries}
+          renderItem={({ item }) => <Text>{item.name}</Text>}
+          keyExtractor={(item) => item.value}
+        />
       </Modal>
     </ScrollView>
   );
