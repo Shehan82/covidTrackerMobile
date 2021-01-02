@@ -14,7 +14,7 @@ import { FlatList } from "react-native-gesture-handler";
 import Graph from "../components/Graph";
 import CountryListModal from "../components/CountryListModal";
 
-const DeathsScreen = ({
+const RecoveriesScreen = ({
   countryList,
   onPressModalVisiblityOn,
   onPressModalVisiblityOff,
@@ -59,7 +59,7 @@ const DeathsScreen = ({
   );
 };
 
-export default DeathsScreen;
+export default RecoveriesScreen;
 
 const styles = StyleSheet.create({
   container: {
