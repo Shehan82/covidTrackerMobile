@@ -29,9 +29,9 @@ const RecoveriesScreen = ({
     <View style={styles.container}>
       <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
       <DetailsBox
-        today={coronaInfo.todayDeaths}
-        total={coronaInfo.deaths}
-        title="Corona Deaths"
+        today={coronaInfo.todayRecovered}
+        total={coronaInfo.recovered}
+        title="Corona Recoverd"
       />
 
       <Graph url={url} country={selectedCountry} />
