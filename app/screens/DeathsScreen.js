@@ -87,7 +87,7 @@ const DeathsScreen = ({
         title="Corona Deaths"
       />
 
-      <Graph url={url} country={selectedCountry} />
+      <Graph url={url} keyword="Deaths" country={selectedCountry} />
 
       <Modal animationType="slide" visible={modalVisible}>
         <TouchableWithoutFeedback onPress={onPressWorldWide}>
