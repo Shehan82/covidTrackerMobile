@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, ScrollView, Modal } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
 import DetailsBox from "../components/DetailsBox";
@@ -33,33 +33,27 @@ const data = [
 ];
 
 const DeathsScreen = () => {
+  const [countries, setCountries] = useState([]);
   useEffect(() => {
     // send a request , wait and do
 
-    const getCountries = async () => {
-      await fetch("https://disease.sh/v3/covid-19/countries")
-        .then((response) => response.json())
-        .then((data) => {
-          const countries = data.map((country) => ({
-            name: country.country,
-            value: country.countryInfo.iso2,
-          }));
-          setCountries(countries);
-          // const sortedData = sortData(data);
-          // setTableData(sortedData);
-          // console.log(data);
-        });
-      // fetch("https://disease.sh/v3/covid-19/countries/LK")
-      // .then(response => response.json())
-      // .then((data)=>{
-
-      //   setCoronaInfo(data);
-
-      // })
-    };
-
     getCountries();
   }, []);
+
+  const getCountries = async () => {
+    await fetch("https://disease.sh/v3/covid-19/countries")
+      .then((response) => response.json())
+      .then((data) => {
+        const countries = data.map((country) => ({
+          name: country.country,
+          value: country.countryInfo.iso2,
+        }));
+        setCountries(countries);
+      });
+  };
+
+  console.log(countries);
+
   return (
     <ScrollView style={styles.container}>
       <Header />
@@ -78,6 +72,9 @@ const DeathsScreen = () => {
           barRatio={0.8}
         />
       </VictoryChart>
+      <Modal animationType="slide" visible={true}>
+        <Text>hello i am modal</Text>
+      </Modal>
     </ScrollView>
   );
 };
