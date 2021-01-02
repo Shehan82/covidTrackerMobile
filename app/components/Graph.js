@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, Platform } from "react-native";
 import {
   VictoryBar,
   VictoryChart,
@@ -9,6 +9,7 @@ import {
   VictoryAxis,
   VictoryArea,
 } from "victory-native";
+import Apptext from "./Apptext";
 
 const data1 = [
   { quarter: 1, earnings: 13000 },
@@ -137,5 +138,6 @@ const styles = StyleSheet.create({
   txtHeader: {
     fontSize: 16,
     fontWeight: "bold",
+    fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
   },
 });
