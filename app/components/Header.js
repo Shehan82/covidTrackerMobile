@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-const Header = ({ onPress }) => {
+const Header = ({ onPress, country }) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.headerContainer}>
@@ -15,7 +15,7 @@ const Header = ({ onPress }) => {
           <Text style={styles.txt}>COVID 19 TRACKER</Text>
         </View>
         <View style={styles.headerRight}>
-          <Text style={styles.txt}>I am right</Text>
+          <Text style={styles.txt}>{country}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

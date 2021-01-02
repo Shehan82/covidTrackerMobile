@@ -14,7 +14,8 @@ const AppNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen
       name="deaths"
-      component={DeathsScreen}
+      // component={DeathsScreen}
+      children={() => <DeathsScreen name={"shehan"} />}
       options={{
         tabBarIcon: ({ color, size }) => (
           <FontAwesome5 name="book-dead" size={size} color={color} />

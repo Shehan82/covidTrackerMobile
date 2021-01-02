@@ -40,9 +40,13 @@ const data = [
   { quarter: 10, earnings: 5000 },
 ];
 
-const DeathsScreen = () => {
+const DeathsScreen = ({ name }) => {
   const [countries, setCountries] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("WorldWide");
+  const [coronaInfo, setCoronaInfo] = useState({});
+  console.log(coronaInfo);
+  // console.log(selectedCountry);
   useEffect(() => {
     // send a request , wait and do
 
@@ -61,15 +65,34 @@ const DeathsScreen = () => {
       });
   };
 
-  console.log(countries);
+  // console.log(countries);
 
   const modalOn = () => {
     setModalVisible(true);
   };
 
+  const onSelectCountry = async () => {
+    console.log(selectedCountry);
+    const url =
+      selectedCountry === "WorldWide"
+        ? "https://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${selectedCountry}`;
+
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setCoronaInfo(data);
+      });
+  };
+
+  useEffect(() => {
+    onSelectCountry();
+    // console.log(selectedCountry);
+  }, [selectedCountry]);
+
   return (
     <ScrollView style={styles.container}>
-      <Header onPress={modalOn} />
+      <Header onPress={modalOn} country={selectedCountry} />
       <DetailsBox />
 
       <VictoryChart
@@ -92,6 +115,7 @@ const DeathsScreen = () => {
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
               onPress={() => {
+                setSelectedCountry(item.value);
                 setModalVisible(false);
               }}
             >
