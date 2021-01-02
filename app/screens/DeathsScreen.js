@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
 import DetailsBox from "../components/DetailsBox";
@@ -12,7 +12,12 @@ import {
   StackedBarChart,
 } from "react-native-chart-kit";
 import { Doughnut, Bar } from "react-chartjs-2";
-import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryTheme,
+  VictoryTooltip,
+} from "victory-native";
 
 const data = [
   { quarter: 1, earnings: 13000 },
@@ -28,10 +33,38 @@ const data = [
 ];
 
 const DeathsScreen = () => {
+  useEffect(() => {
+    // send a request , wait and do
+
+    const getCountries = async () => {
+      await fetch("https://disease.sh/v3/covid-19/countries")
+        .then((response) => response.json())
+        .then((data) => {
+          const countries = data.map((country) => ({
+            name: country.country,
+            value: country.countryInfo.iso2,
+          }));
+          setCountries(countries);
+          // const sortedData = sortData(data);
+          // setTableData(sortedData);
+          // console.log(data);
+        });
+      // fetch("https://disease.sh/v3/covid-19/countries/LK")
+      // .then(response => response.json())
+      // .then((data)=>{
+
+      //   setCoronaInfo(data);
+
+      // })
+    };
+
+    getCountries();
+  }, []);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Header />
       <DetailsBox />
+
       <VictoryChart
         domainPadding={10}
         width={350}
@@ -45,9 +78,7 @@ const DeathsScreen = () => {
           barRatio={0.8}
         />
       </VictoryChart>
-
-      {/* <Bar data={data} width={100} height={50} /> */}
-    </View>
+    </ScrollView>
   );
 };
 
