@@ -81,10 +81,7 @@ const DeathsScreen = ({
   return (
     <View style={styles.container}>
       <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
-      <DetailsBox
-        todayDeaths={coronaInfo.todayDeaths}
-        totalDeaths={coronaInfo.deaths}
-      />
+      <DetailsBox today={coronaInfo.todayDeaths} total={coronaInfo.deaths} />
 
       <Graph url={url} country={selectedCountry} />
 
