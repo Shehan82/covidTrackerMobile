@@ -10,12 +10,34 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { View, Text } from "react-native";
 const Tab = createBottomTabNavigator();
 
-const AppNavigator = () => (
+const AppNavigator = ({
+  countryList,
+  onPressModalVisiblityOn,
+  onPressModalVisiblityOff,
+  selectedCountry,
+  onPressWorldWide,
+  onPressSetSelectedCountry,
+  coronaInfo,
+  modalVisible,
+  url,
+}) => (
   <Tab.Navigator>
     <Tab.Screen
       name="deaths"
       // component={DeathsScreen}
-      children={() => <DeathsScreen name={"shehan"} />}
+      children={() => (
+        <DeathsScreen
+          countryList={countryList}
+          onPressModalVisiblityOn={onPressModalVisiblityOn}
+          onPressModalVisiblityOff={onPressModalVisiblityOff}
+          selectedCountry={selectedCountry}
+          onPressWorldWide={onPressWorldWide}
+          onPressSetSelectedCountry={onPressSetSelectedCountry}
+          coronaInfo={coronaInfo}
+          modalVisible={modalVisible}
+          url={url}
+        />
+      )}
       options={{
         tabBarIcon: ({ color, size }) => (
           <FontAwesome5 name="book-dead" size={size} color={color} />
