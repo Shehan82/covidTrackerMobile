@@ -7,6 +7,7 @@ import {
   Modal,
   TouchableWithoutFeedback,
   Image,
+  Platform,
 } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
@@ -39,14 +40,16 @@ const DeathsScreen = ({
 
       <Modal animationType="slide" visible={modalVisible}>
         <View style={styles.modalContainer}>
-          <TouchableWithoutFeedback onPress={onPressWorldWide}>
-            <View style={styles.wwContainer}>
-              <Text>WorldWide</Text>
-            </View>
-          </TouchableWithoutFeedback>
           <FlatList
             data={countryList}
             keyExtractor={(item) => item.name}
+            ListHeaderComponent={() => (
+              <TouchableWithoutFeedback onPress={onPressWorldWide}>
+                <View style={styles.wwContainer}>
+                  <Text style={styles.txt}>WorldWide</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            )}
             renderItem={({ item }) => (
               <TouchableWithoutFeedback
                 onPress={() => {
@@ -81,8 +84,8 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },
   tContainer: {
-    borderWidth: 2,
-    borderColor: "red",
+    // borderWidth: 2,
+    // borderColor: "red",
     width: "50%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -92,13 +95,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   wwContainer: {
-    borderWidth: 2,
-    borderColor: "red",
+    // borderWidth: 2,
+    // borderColor: "red",
     width: "50%",
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical: 5,
     marginLeft: "auto",
     marginRight: "auto",
+  },
+  txt: {
+    fontSize: 16,
+    fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
+    fontWeight: "bold",
   },
 });
