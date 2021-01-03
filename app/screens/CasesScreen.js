@@ -13,7 +13,6 @@ import Constant from "expo-constants";
 import DetailsBox from "../components/DetailsBox";
 import { FlatList } from "react-native-gesture-handler";
 import Graph from "../components/Graph";
-import CountryListModal from "../components/CountryListModal";
 
 const CasesScreen = ({
   countryList,

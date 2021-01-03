@@ -11,6 +11,7 @@ import { View, Text } from "react-native";
 import AboutScreen from "../screens/AboutScreen";
 import { AntDesign } from "@expo/vector-icons";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import Navigator from "./Navigator";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = ({
@@ -36,7 +37,7 @@ const AppNavigator = ({
   >
     <Tab.Screen
       name="Deaths"
-      // component={DeathsScreen}
+      component={DeathsScreen}
       children={() => (
         <DeathsScreen
           countryList={countryList}

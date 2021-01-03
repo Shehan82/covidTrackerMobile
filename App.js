@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Modal,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 
-import { FlatList } from "react-native-gesture-handler";
-
+import { FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
-import AppNavigator from "./app/navigations/AppNavigator";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import DeathsScreen from "./app/screens/DeathsScreen";
+import AboutScreen from "./app/screens/AboutScreen";
+import RecoveriesScreen from "./app/screens/RecoveriesScreen";
+import CasesScreen from "./app/screens/CasesScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 
-export default function App({ navigation }) {
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function SubApp() {
   const [countries, setCountries] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("WorldWide");
@@ -22,9 +23,6 @@ export default function App({ navigation }) {
   const [url, setUrl] = useState(
     "https://disease.sh/v3/covid-19/historical/all?lastdays=30"
   );
-  const [component, setComponent] = useState({
-    comp: <WelcomeScreen />,
-  });
 
   useEffect(() => {
     getCountries();
@@ -32,7 +30,6 @@ export default function App({ navigation }) {
 
   useEffect(() => {
     onSelectCountry();
-    // welcome();
   }, [selectedCountry]);
 
   const getCountries = async () => {
@@ -60,31 +57,6 @@ export default function App({ navigation }) {
     setSelectedCountry(country);
   };
 
-  const welcome = () => {
-    setTimeout(() => {
-      setComponent({
-        comp: (
-          <NavigationContainer>
-            <AppNavigator
-              countryList={countries}
-              onPressModalVisiblityOn={modalOn}
-              onPressModalVisiblityOff={modalOff}
-              selectedCountry={selectedCountry}
-              onPressWorldWide={() => {
-                setSelectedCountry("WorldWide");
-                setModalVisible(false);
-              }}
-              onPressSetSelectedCountry={onPressSetSelectedCountry}
-              coronaInfo={coronaInfo}
-              url={url}
-              modalVisible={modalVisible}
-            />
-          </NavigationContainer>
-        ),
-      });
-    }, 6000);
-  };
-
   const onSelectCountry = async () => {
     console.log(selectedCountry);
     const link =
@@ -107,28 +79,122 @@ export default function App({ navigation }) {
   };
 
   return (
+    <Tab.Navigator
+      tabBarOptions={{
+        tabStyle: {},
+
+        labelPosition: "below-icon",
+        labelStyle: {
+          fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Deaths"
+        // component={DeathsScreen}
+        children={() => (
+          <DeathsScreen
+            countryList={countries}
+            onPressModalVisiblityOn={modalOn}
+            onPressModalVisiblityOff={modalOff}
+            selectedCountry={selectedCountry}
+            onPressWorldWide={() => {
+              setSelectedCountry("WorldWide");
+              setModalVisible(false);
+            }}
+            onPressSetSelectedCountry={onPressSetSelectedCountry}
+            coronaInfo={coronaInfo}
+            modalVisible={modalVisible}
+            url={url}
+          />
+        )}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="book-dead" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Recovery"
+        children={() => (
+          <RecoveriesScreen
+            countryList={countries}
+            onPressModalVisiblityOn={modalOn}
+            onPressModalVisiblityOff={modalOff}
+            selectedCountry={selectedCountry}
+            onPressWorldWide={() => {
+              setSelectedCountry("WorldWide");
+              setModalVisible(false);
+            }}
+            onPressSetSelectedCountry={onPressSetSelectedCountry}
+            coronaInfo={coronaInfo}
+            modalVisible={modalVisible}
+            url={url}
+          />
+        )}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="address-book" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Cases"
+        // component={CasesScreen}
+        children={() => (
+          <CasesScreen
+            countryList={countries}
+            onPressModalVisiblityOn={modalOn}
+            onPressModalVisiblityOff={modalOff}
+            selectedCountry={selectedCountry}
+            onPressWorldWide={() => {
+              setSelectedCountry("WorldWide");
+              setModalVisible(false);
+            }}
+            onPressSetSelectedCountry={onPressSetSelectedCountry}
+            coronaInfo={coronaInfo}
+            modalVisible={modalVisible}
+            url={url}
+          />
+        )}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="book-medical" size={size} color={color} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="About"
+        component={AboutScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="API" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function App() {
+  return (
     <View style={styles.container}>
-      {/* {component.comp} */}
-      {/* <WelcomeScreen /> */}
       <NavigationContainer>
-        <AppNavigator
-          countryList={countries}
-          onPressModalVisiblityOn={modalOn}
-          onPressModalVisiblityOff={modalOff}
-          selectedCountry={selectedCountry}
-          onPressWorldWide={() => {
-            setSelectedCountry("WorldWide");
-            setModalVisible(false);
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
           }}
-          onPressSetSelectedCountry={onPressSetSelectedCountry}
-          coronaInfo={coronaInfo}
-          url={url}
-          modalVisible={modalVisible}
-        />
+        >
+          <Stack.Screen name="welcome" component={WelcomeScreen} />
+          <Stack.Screen name="app" component={SubApp} />
+        </Stack.Navigator>
       </NavigationContainer>
     </View>
   );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {

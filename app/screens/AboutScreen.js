@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const AboutScreen = () => {
+const AboutScreen = ({ navigation }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate("welcome");
+    }, 4000);
+
+    console.log(navigation);
+  }, []);
   return (
     <View>
       <Text>This is about</Text>

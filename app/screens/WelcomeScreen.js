@@ -1,7 +1,12 @@
-import React from "react";
-import { Image, StyleSheet, Text, View, Platform } from "react-native";
+import React, { useEffect } from "react";
+import { Image, StyleSheet, Text, View, Platform, Button } from "react-native";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate("app");
+    }, 5000);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
