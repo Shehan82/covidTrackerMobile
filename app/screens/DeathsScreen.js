@@ -97,7 +97,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     paddingTop: Constant.statusBarHeight,
-    paddingBottom: 0,
+    paddingBottom: Platform.OS === "ios" ? 0 : 5,
+    flex: 1,
   },
   modalContainer: {
     paddingTop: 25,

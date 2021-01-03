@@ -16,10 +16,15 @@ const Header = ({ onPress, country }) => {
           <Text style={styles.txt}>COVID 19 TRACKER</Text>
         </View>
         <View style={styles.headerRight}>
-          <Text numberOfLines={2} style={styles.txt}>
+          <Text numberOfLines={1} style={styles.txt}>
             {country}
           </Text>
-          <MaterialCommunityIcons name="chevron-down" size={24} color="black" />
+          <MaterialCommunityIcons
+            style={{ marginLeft: 10 }}
+            name="chevron-down"
+            size={24}
+            color="black"
+          />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -50,12 +55,14 @@ const styles = StyleSheet.create({
   headerRight: {
     // borderColor: "red",
     // borderWidth: 2,
-    flex: 0.45,
+    flex: 0.4,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 10,
+    paddingLeft: 15,
+    paddingRight: 10,
   },
   txt: {
     fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",

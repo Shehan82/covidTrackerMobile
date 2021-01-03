@@ -5,7 +5,7 @@ const WelcomeScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("app");
-    }, 1000);
+    }, 3000);
   }, []);
   return (
     <View style={styles.container}>
@@ -15,9 +15,9 @@ const WelcomeScreen = ({ navigation }) => {
       </View>
       <View style={styles.cpTxt}>
         <Text style={{ fontSize: 10 }}>
-          Copyright Double S Group © 2020 - 2021
+          Copyright Shehan Sandeepa © 2020 - 2021
         </Text>
-        <Text style={{ fontSize: 10 }}>API reference deaseas.sh</Text>
+        <Text style={{ fontSize: 10 }}>API reference disease.sh</Text>
       </View>
     </View>
   );

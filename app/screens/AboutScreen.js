@@ -21,10 +21,10 @@ const AboutScreen = () => {
             style={styles.img}
             source={require("../../assets/covid.jpg")}
           />
-          <Text>API reference - deaseas.sh</Text>
-          <Text>Owner - Double S Group</Text>
+          <Text>API reference - disease.sh</Text>
+          <Text>Owner - Shehan Sandeepa</Text>
           <Text></Text>
-          <Text>Email - shehansandeepa92@gmail.com</Text>
+          <Text>Email - shehansandeepa82@gmail.com</Text>
           <Text></Text>
 
           <Text style={styles.txt}>Stay Home! Stay Safe!</Text>

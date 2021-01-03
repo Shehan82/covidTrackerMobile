@@ -32,14 +32,16 @@ const CasesScreen = ({
       style={styles.image}
     >
       <View style={styles.container}>
-        <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
-        <DetailsBox
-          today={coronaInfo.todayCases}
-          total={coronaInfo.cases}
-          title="Corona Cases"
-        />
+        <ScrollView nestedScrollEnabled={true}>
+          <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
+          <DetailsBox
+            today={coronaInfo.todayCases}
+            total={coronaInfo.cases}
+            title="Corona Cases"
+          />
 
-        <Graph url={url} keyword="Cases" country={selectedCountry} />
+          <Graph url={url} keyword="Cases" country={selectedCountry} />
+        </ScrollView>
 
         <Modal animationType="slide" visible={modalVisible}>
           <View style={styles.modalContainer}>
@@ -92,6 +94,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     paddingTop: Constant.statusBarHeight,
+    paddingBottom: Platform.OS === "ios" ? 0 : 5,
+    flex: 1,
   },
   modalContainer: {
     paddingTop: 25,

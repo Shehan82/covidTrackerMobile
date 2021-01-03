@@ -32,14 +32,16 @@ const RecoveriesScreen = ({
       style={styles.image}
     >
       <View style={styles.container}>
-        <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
-        <DetailsBox
-          today={coronaInfo.todayRecovered}
-          total={coronaInfo.recovered}
-          title="Corona Recoverd"
-        />
+        <ScrollView nestedScrollEnabled={true}>
+          <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
+          <DetailsBox
+            today={coronaInfo.todayRecovered}
+            total={coronaInfo.recovered}
+            title="Corona Recoverd"
+          />
 
-        <Graph url={url} keyword="Recovered" country={selectedCountry} />
+          <Graph url={url} keyword="Recovered" country={selectedCountry} />
+        </ScrollView>
 
         <Modal animationType="slide" visible={modalVisible}>
           <View style={styles.modalContainer}>
@@ -92,6 +94,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     paddingTop: Constant.statusBarHeight,
+    paddingBottom: Platform.OS === "ios" ? 0 : 5,
+    flex: 1,
   },
   modalContainer: {
     paddingTop: 25,
