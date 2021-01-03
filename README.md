@@ -2,7 +2,7 @@
 
 
 This mobile application was created using React Native
-You can use it on Android and ios mobile devices, through expo client mobile application
+You can use it on Android and ios mobile devices, through expo client mobile applicatio. give it a try!
 
 	1.Download expo client mobile application
 	2.Scan the qr code at the link below
