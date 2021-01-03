@@ -6,6 +6,7 @@ import {
   Platform,
   TouchableWithoutFeedback,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Header = ({ onPress, country }) => {
   return (
@@ -15,7 +16,10 @@ const Header = ({ onPress, country }) => {
           <Text style={styles.txt}>COVID 19 TRACKER</Text>
         </View>
         <View style={styles.headerRight}>
-          <Text style={styles.txt}>{country}</Text>
+          <Text numberOfLines={2} style={styles.txt}>
+            {country}
+          </Text>
+          <MaterialCommunityIcons name="chevron-down" size={24} color="black" />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -46,8 +50,9 @@ const styles = StyleSheet.create({
   headerRight: {
     // borderColor: "red",
     // borderWidth: 2,
-    flex: 0.4,
-    justifyContent: "center",
+    flex: 0.45,
+    flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 10,
