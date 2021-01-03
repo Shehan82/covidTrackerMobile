@@ -15,7 +15,7 @@ Link  -  https://expo.io/@shehan82/projects/
 
 <img src="https://user-images.githubusercontent.com/55059232/103486558-a7723100-4e24-11eb-9d54-d5dc15de60be.jpeg"  width="300" height="500">
 
-<img src="https://user-images.githubusercontent.com/55059232/103486560-b1942f80-4e24-11eb-9f16-d88f53992e94.jpeg"  width="300" height="500">
+
 
 </div>
 
