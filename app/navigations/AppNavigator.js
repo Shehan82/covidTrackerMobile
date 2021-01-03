@@ -8,6 +8,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import TabButton from "../components/TabButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { View, Text } from "react-native";
+import AboutScreen from "../screens/AboutScreen";
+import { AntDesign } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = ({
@@ -94,6 +96,16 @@ const AppNavigator = ({
       options={{
         tabBarIcon: ({ color, size }) => (
           <FontAwesome5 name="book-medical" size={size} color={color} />
+        ),
+      }}
+    />
+
+    <Tab.Screen
+      name="About"
+      component={AboutScreen}
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <AntDesign name="API" size={size} color={color} />
         ),
       }}
     />

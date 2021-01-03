@@ -12,6 +12,7 @@ import { FlatList } from "react-native-gesture-handler";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./app/navigations/AppNavigator";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
 
 export default function App() {
   const [countries, setCountries] = useState([]);
@@ -21,6 +22,33 @@ export default function App() {
   const [url, setUrl] = useState(
     "https://disease.sh/v3/covid-19/historical/all?lastdays=30"
   );
+  const [component, setComponent] = useState({
+    comp: <WelcomeScreen />,
+  });
+  useEffect(() => {
+    setTimeout(() => {
+      setComponent({
+        comp: (
+          <NavigationContainer>
+            <AppNavigator
+              countryList={countries}
+              onPressModalVisiblityOn={modalOn}
+              onPressModalVisiblityOff={modalOff}
+              selectedCountry={selectedCountry}
+              onPressWorldWide={() => {
+                setSelectedCountry("WorldWide");
+                setModalVisible(false);
+              }}
+              onPressSetSelectedCountry={onPressSetSelectedCountry}
+              coronaInfo={coronaInfo}
+              url={url}
+              modalVisible={modalVisible}
+            />
+          </NavigationContainer>
+        ),
+      });
+    }, 6000);
+  }, []);
 
   useEffect(() => {
     getCountries();
@@ -77,22 +105,8 @@ export default function App() {
   };
   return (
     <View style={styles.container}>
-      <NavigationContainer>
-        <AppNavigator
-          countryList={countries}
-          onPressModalVisiblityOn={modalOn}
-          onPressModalVisiblityOff={modalOff}
-          selectedCountry={selectedCountry}
-          onPressWorldWide={() => {
-            setSelectedCountry("WorldWide");
-            setModalVisible(false);
-          }}
-          onPressSetSelectedCountry={onPressSetSelectedCountry}
-          coronaInfo={coronaInfo}
-          url={url}
-          modalVisible={modalVisible}
-        />
-      </NavigationContainer>
+      {/* {component.comp} */}
+      <WelcomeScreen />
     </View>
   );
 }

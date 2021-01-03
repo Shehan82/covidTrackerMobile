@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   headerLeft: {
     // borderColor: "red",
     // borderWidth: 2,
-    flex: 0.6,
+    flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   headerRight: {
     // borderColor: "red",
     // borderWidth: 2,
-    flex: 0.3,
+    flex: 0.4,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
