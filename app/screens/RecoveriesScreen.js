@@ -7,6 +7,7 @@ import {
   Modal,
   TouchableWithoutFeedback,
   Image,
+  ImageBackground,
 } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
@@ -26,57 +27,62 @@ const RecoveriesScreen = ({
   url,
 }) => {
   return (
-    <View style={styles.container}>
-      <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
-      <DetailsBox
-        today={coronaInfo.todayRecovered}
-        total={coronaInfo.recovered}
-        title="Corona Recoverd"
-      />
+    <ImageBackground
+      source={require("../../assets/6.png")}
+      style={styles.image}
+    >
+      <View style={styles.container}>
+        <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
+        <DetailsBox
+          today={coronaInfo.todayRecovered}
+          total={coronaInfo.recovered}
+          title="Corona Recoverd"
+        />
 
-      <Graph url={url} keyword="Recovered" country={selectedCountry} />
+        <Graph url={url} keyword="Recovered" country={selectedCountry} />
 
-      <Modal animationType="slide" visible={modalVisible}>
-        <View style={styles.modalContainer}>
-          <TouchableWithoutFeedback onPress={onPressModalVisiblityOff}>
-            <View style={styles.closeContainer}>
-              <Text style={styles.txtClose}>Close</Text>
-            </View>
-          </TouchableWithoutFeedback>
-          <FlatList
-            data={countryList}
-            keyExtractor={(item) => item.name}
-            ListHeaderComponent={() => (
-              <TouchableWithoutFeedback onPress={onPressWorldWide}>
-                <View style={styles.wwContainer}>
-                  <Text style={styles.txt}>WorldWide</Text>
-                  <Image
-                    style={{ width: 30, height: 30, borderRadius: 15 }}
-                    source={require("../../assets/world.jpeg")}
-                  />
-                </View>
-              </TouchableWithoutFeedback>
-            )}
-            renderItem={({ item }) => (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  onPressSetSelectedCountry(item.name);
-                  onPressModalVisiblityOff();
-                }}
-              >
-                <View style={styles.tContainer}>
-                  <Text style={styles.txt}>{item.name}</Text>
-                  <Image
-                    style={{ width: 30, height: 30, borderRadius: 15 }}
-                    source={{ uri: item.flag }}
-                  />
-                </View>
-              </TouchableWithoutFeedback>
-            )}
-          />
-        </View>
-      </Modal>
-    </View>
+        <Modal animationType="slide" visible={modalVisible}>
+          <View style={styles.modalContainer}>
+            <TouchableWithoutFeedback onPress={onPressModalVisiblityOff}>
+              <View style={styles.closeContainer}>
+                <Text style={styles.txtClose}>Close</Text>
+              </View>
+            </TouchableWithoutFeedback>
+            <FlatList
+              data={countryList}
+              keyExtractor={(item) => item.name}
+              ListHeaderComponent={() => (
+                <TouchableWithoutFeedback onPress={onPressWorldWide}>
+                  <View style={styles.wwContainer}>
+                    <Text style={styles.txt}>WorldWide</Text>
+                    <Image
+                      style={{ width: 30, height: 30, borderRadius: 15 }}
+                      source={require("../../assets/world.jpeg")}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+              )}
+              renderItem={({ item }) => (
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    onPressSetSelectedCountry(item.name);
+                    onPressModalVisiblityOff();
+                  }}
+                >
+                  <View style={styles.tContainer}>
+                    <Text style={styles.txt}>{item.name}</Text>
+                    <Image
+                      style={{ width: 30, height: 30, borderRadius: 15 }}
+                      source={{ uri: item.flag }}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+              )}
+            />
+          </View>
+        </Modal>
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -128,5 +134,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
     // fontWeight: "bold",
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
   },
 });
