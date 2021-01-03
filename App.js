@@ -180,7 +180,7 @@ function SubApp() {
 function App() {
   return (
     <View style={styles.container}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
@@ -197,7 +197,8 @@ function App() {
             options={{ gestureEnabled: false }}
           />
         </Stack.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
+      <WelcomeScreen />
     </View>
   );
 }

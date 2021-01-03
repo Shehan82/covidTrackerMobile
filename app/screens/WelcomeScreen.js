@@ -14,8 +14,10 @@ const WelcomeScreen = ({ navigation }) => {
         <Text style={styles.txt}>WORLDWIDE COVID 19 TRACKER</Text>
       </View>
       <View style={styles.cpTxt}>
-        <Text>Copyright Double S Group © 2020 - 2021</Text>
-        <Text>API reference deaseas.sh</Text>
+        <Text style={{ fontSize: 10 }}>
+          Copyright Double S Group © 2020 - 2021
+        </Text>
+        <Text style={{ fontSize: 10 }}>API reference deaseas.sh</Text>
       </View>
     </View>
   );
