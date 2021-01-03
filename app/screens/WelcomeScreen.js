@@ -5,7 +5,7 @@ const WelcomeScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("app");
-    }, 5000);
+    }, 1000);
   }, []);
   return (
     <View style={styles.container}>

@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View, Platform } from "react-native";
 import {
-  VictoryBar,
-  VictoryChart,
-  VictoryTheme,
-  VictoryTooltip,
-  VictoryLabel,
-  VictoryAxis,
-  VictoryArea,
-} from "victory-native";
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  SafeAreaView,
+} from "react-native";
 
 const Graph = ({ url, country, keyword }) => {
-  // console.log(url);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -94,16 +91,25 @@ const Graph = ({ url, country, keyword }) => {
           </Text>
           <Text style={styles.txtHeader}> last 10 Days</Text>
         </View>
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.date}
-          renderItem={({ item }) => (
-            <View style={styles.deathList}>
-              <Text>{item.date}</Text>
-              <Text>{item.data}</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+          {/* <FlatList
+            scrollEnabled={false}
+            data={data}
+            keyExtractor={(item) => item.date}
+            renderItem={({ item }) => (
+              <View style={styles.deathList}>
+                <Text>{item.date}</Text>
+                <Text>{item.data}</Text>
+              </View>
+            )}
+          /> */}
+          {data.map((country) => (
+            <View key={country.date} style={styles.deathList}>
+              <Text>{country.date}</Text>
+              <Text>{country.data}</Text>
             </View>
-          )}
-        />
+          ))}
+        </SafeAreaView>
       </View>
     </View>
   );
@@ -116,7 +122,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 100,
     // borderColor: "blue",
     // borderWidth: 2,
   },

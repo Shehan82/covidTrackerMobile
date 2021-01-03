@@ -34,14 +34,16 @@ const DeathsScreen = ({
       style={styles.image}
     >
       <View style={styles.container}>
-        <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
-        <DetailsBox
-          today={coronaInfo.todayDeaths}
-          total={coronaInfo.deaths}
-          title="Corona Deaths"
-        />
+        <ScrollView nestedScrollEnabled={true}>
+          <Header onPress={onPressModalVisiblityOn} country={selectedCountry} />
+          <DetailsBox
+            today={coronaInfo.todayDeaths}
+            total={coronaInfo.deaths}
+            title="Corona Deaths"
+          />
 
-        <Graph url={url} keyword="Deaths" country={selectedCountry} />
+          <Graph url={url} keyword="Deaths" country={selectedCountry} />
+        </ScrollView>
 
         <Modal animationType="slide" visible={modalVisible}>
           <View style={styles.modalContainer}>
@@ -50,39 +52,38 @@ const DeathsScreen = ({
                 <Text style={styles.txtClose}>Close</Text>
               </View>
             </TouchableWithoutFeedback>
-            <SafeAreaView style={{ flex: 1 }}>
-              <FlatList
-                data={countryList}
-                keyExtractor={(item) => item.name}
-                ListHeaderComponent={() => (
-                  <TouchableWithoutFeedback onPress={onPressWorldWide}>
-                    <View style={styles.wwContainer}>
-                      <Text style={styles.txt}>WorldWide</Text>
-                      <Image
-                        style={{ width: 30, height: 30, borderRadius: 15 }}
-                        source={require("../../assets/world.jpeg")}
-                      />
-                    </View>
-                  </TouchableWithoutFeedback>
-                )}
-                renderItem={({ item }) => (
-                  <TouchableWithoutFeedback
-                    onPress={() => {
-                      onPressSetSelectedCountry(item.name);
-                      onPressModalVisiblityOff();
-                    }}
-                  >
-                    <View style={styles.tContainer}>
-                      <Text style={styles.txt}>{item.name}</Text>
-                      <Image
-                        style={{ width: 30, height: 30, borderRadius: 15 }}
-                        source={{ uri: item.flag }}
-                      />
-                    </View>
-                  </TouchableWithoutFeedback>
-                )}
-              />
-            </SafeAreaView>
+
+            <FlatList
+              data={countryList}
+              keyExtractor={(item) => item.name}
+              ListHeaderComponent={() => (
+                <TouchableWithoutFeedback onPress={onPressWorldWide}>
+                  <View style={styles.wwContainer}>
+                    <Text style={styles.txt}>WorldWide</Text>
+                    <Image
+                      style={{ width: 30, height: 30, borderRadius: 15 }}
+                      source={require("../../assets/world.jpeg")}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+              )}
+              renderItem={({ item }) => (
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    onPressSetSelectedCountry(item.name);
+                    onPressModalVisiblityOff();
+                  }}
+                >
+                  <View style={styles.tContainer}>
+                    <Text style={styles.txt}>{item.name}</Text>
+                    <Image
+                      style={{ width: 30, height: 30, borderRadius: 15 }}
+                      source={{ uri: item.flag }}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+              )}
+            />
           </View>
         </Modal>
       </View>
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     paddingTop: Constant.statusBarHeight,
+    paddingBottom: 0,
   },
   modalContainer: {
     paddingTop: 25,
