@@ -6,6 +6,7 @@ import {
   ScrollView,
   Modal,
   TouchableWithoutFeedback,
+  Image,
 } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
@@ -37,23 +38,44 @@ const RecoveriesScreen = ({
       <Graph url={url} keyword="Recovered" country={selectedCountry} />
 
       <Modal animationType="slide" visible={modalVisible}>
-        <TouchableWithoutFeedback onPress={onPressWorldWide}>
-          <Text>WorldWide</Text>
-        </TouchableWithoutFeedback>
-        <FlatList
-          data={countryList}
-          keyExtractor={(item) => item.name}
-          renderItem={({ item }) => (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                onPressSetSelectedCountry(item.name);
-                onPressModalVisiblityOff();
-              }}
-            >
-              <Text>{item.name}</Text>
-            </TouchableWithoutFeedback>
-          )}
-        />
+        <View style={styles.modalContainer}>
+          <TouchableWithoutFeedback onPress={onPressModalVisiblityOff}>
+            <View style={styles.closeContainer}>
+              <Text style={styles.txtClose}>Close</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <FlatList
+            data={countryList}
+            keyExtractor={(item) => item.name}
+            ListHeaderComponent={() => (
+              <TouchableWithoutFeedback onPress={onPressWorldWide}>
+                <View style={styles.wwContainer}>
+                  <Text style={styles.txt}>WorldWide</Text>
+                  <Image
+                    style={{ width: 30, height: 30, borderRadius: 15 }}
+                    source={require("../../assets/world.jpeg")}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
+            )}
+            renderItem={({ item }) => (
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  onPressSetSelectedCountry(item.name);
+                  onPressModalVisiblityOff();
+                }}
+              >
+                <View style={styles.tContainer}>
+                  <Text style={styles.txt}>{item.name}</Text>
+                  <Image
+                    style={{ width: 30, height: 30, borderRadius: 15 }}
+                    source={{ uri: item.flag }}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
+            )}
+          />
+        </View>
       </Modal>
     </View>
   );

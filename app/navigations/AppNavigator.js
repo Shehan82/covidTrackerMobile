@@ -24,7 +24,11 @@ const AppNavigator = ({
   <Tab.Navigator
     tabBarOptions={{
       tabStyle: {},
+
       labelPosition: "below-icon",
+      labelStyle: {
+        fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
+      },
     }}
   >
     <Tab.Screen
