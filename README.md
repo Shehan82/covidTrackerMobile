@@ -7,7 +7,7 @@ You can use it on Android and ios mobile devices, through expo client mobile app
 	1.Download expo client mobile application
 	2.Scan the qr code at the link below
 
-Link  -  https://expo.io/@shehan82/projects/
+Link  - https://expo.io/@shehan82/projects/covidTrackerMobile
 
 
 
