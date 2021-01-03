@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
   txt: {
     fontSize: 16,
     fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
-    fontWeight: "bold",
+    // fontWeight: "bold",
   },
 });
