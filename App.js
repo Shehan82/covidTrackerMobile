@@ -15,7 +15,7 @@ import AppNavigator from "./app/navigations/AppNavigator";
 
 export default function App() {
   const [countries, setCountries] = useState([]);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("WorldWide");
   const [coronaInfo, setCoronaInfo] = useState({});
   const [url, setUrl] = useState(

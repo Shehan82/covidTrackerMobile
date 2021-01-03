@@ -21,9 +21,14 @@ const AppNavigator = ({
   modalVisible,
   url,
 }) => (
-  <Tab.Navigator>
+  <Tab.Navigator
+    tabBarOptions={{
+      tabStyle: {},
+      labelPosition: "below-icon",
+    }}
+  >
     <Tab.Screen
-      name="deaths"
+      name="Deaths"
       // component={DeathsScreen}
       children={() => (
         <DeathsScreen
@@ -45,7 +50,7 @@ const AppNavigator = ({
       }}
     />
     <Tab.Screen
-      name="recovery"
+      name="Recovery"
       // component={RecoveriesScreen}
       children={() => (
         <RecoveriesScreen
@@ -67,7 +72,7 @@ const AppNavigator = ({
       }}
     />
     <Tab.Screen
-      name="cases"
+      name="Cases"
       // component={CasesScreen}
       children={() => (
         <CasesScreen
