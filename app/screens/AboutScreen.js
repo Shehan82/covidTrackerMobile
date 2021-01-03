@@ -5,14 +5,16 @@ import Constant from "expo-constants";
 const AboutScreen = () => {
   return (
     <View style={styles.container}>
-      <Image style={styles.img} source={require("../../assets/covid.jpg")} />
-      <Text>API reference - deaseas.sh</Text>
-      <Text>Owner - Double S Group</Text>
-      <Text></Text>
-      <Text>Email - shehansandeepa92@gmail.com</Text>
-      <Text></Text>
+      <View style={styles.subContainer}>
+        <Image style={styles.img} source={require("../../assets/covid.jpg")} />
+        <Text>API reference - deaseas.sh</Text>
+        <Text>Owner - Double S Group</Text>
+        <Text></Text>
+        <Text>Email - shehansandeepa92@gmail.com</Text>
+        <Text></Text>
 
-      <Text style={styles.txt}>Stay Home! Stay Safe!</Text>
+        <Text style={styles.txt}>Stay Home! Stay Safe!</Text>
+      </View>
     </View>
   );
 };
@@ -39,5 +41,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
     fontWeight: "bold",
+  },
+  subContainer: {
+    borderWidth: 2,
+    borderColor: "red",
+    alignItems: "center",
+    padding: 15,
+    backgroundColor: "white",
+    borderRadius: 20,
   },
 });
