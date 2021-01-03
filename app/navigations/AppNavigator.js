@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DeathsScreen from "../screens/DeathsScreen";
 import RecoveriesScreen from "../screens/RecoveriesScreen";
@@ -10,6 +10,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { View, Text } from "react-native";
 import AboutScreen from "../screens/AboutScreen";
 import { AntDesign } from "@expo/vector-icons";
+import WelcomeScreen from "../screens/WelcomeScreen";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = ({

@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, Platform } from "react-native";
 
 const WelcomeScreen = () => {
   return (
@@ -7,6 +7,10 @@ const WelcomeScreen = () => {
       <View style={styles.logoContainer}>
         <Image style={styles.img} source={require("../../assets/covid.jpg")} />
         <Text style={styles.txt}>WORLDWIDE COVID 19 TRACKER</Text>
+      </View>
+      <View style={styles.cpTxt}>
+        <Text>Copyright Double S Group © 2020 - 2021</Text>
+        <Text>API reference deaseas.sh</Text>
       </View>
     </View>
   );
@@ -26,14 +30,24 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 125,
-    borderColor: "blue",
-    borderWidth: 2,
+    borderColor: "lightgrey",
+    borderWidth: 1,
   },
   logoContainer: {
-    top: 70,
+    top: "20%",
     alignItems: "center",
-    borderColor: "blue",
-    borderWidth: 2,
+    // borderColor: "blue",
+    // borderWidth: 2,
   },
-  txt: {},
+  txt: {
+    marginVertical: 20,
+    fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  cpTxt: {
+    justifyContent: "flex-end",
+    flex: 1,
+    alignItems: "center",
+  },
 });

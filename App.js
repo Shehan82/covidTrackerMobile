@@ -14,7 +14,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./app/navigations/AppNavigator";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 
-export default function App() {
+export default function App({ navigation }) {
   const [countries, setCountries] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("WorldWide");
@@ -25,30 +25,6 @@ export default function App() {
   const [component, setComponent] = useState({
     comp: <WelcomeScreen />,
   });
-  useEffect(() => {
-    setTimeout(() => {
-      setComponent({
-        comp: (
-          <NavigationContainer>
-            <AppNavigator
-              countryList={countries}
-              onPressModalVisiblityOn={modalOn}
-              onPressModalVisiblityOff={modalOff}
-              selectedCountry={selectedCountry}
-              onPressWorldWide={() => {
-                setSelectedCountry("WorldWide");
-                setModalVisible(false);
-              }}
-              onPressSetSelectedCountry={onPressSetSelectedCountry}
-              coronaInfo={coronaInfo}
-              url={url}
-              modalVisible={modalVisible}
-            />
-          </NavigationContainer>
-        ),
-      });
-    }, 6000);
-  }, []);
 
   useEffect(() => {
     getCountries();
@@ -56,6 +32,7 @@ export default function App() {
 
   useEffect(() => {
     onSelectCountry();
+    // welcome();
   }, [selectedCountry]);
 
   const getCountries = async () => {
@@ -83,6 +60,31 @@ export default function App() {
     setSelectedCountry(country);
   };
 
+  const welcome = () => {
+    setTimeout(() => {
+      setComponent({
+        comp: (
+          <NavigationContainer>
+            <AppNavigator
+              countryList={countries}
+              onPressModalVisiblityOn={modalOn}
+              onPressModalVisiblityOff={modalOff}
+              selectedCountry={selectedCountry}
+              onPressWorldWide={() => {
+                setSelectedCountry("WorldWide");
+                setModalVisible(false);
+              }}
+              onPressSetSelectedCountry={onPressSetSelectedCountry}
+              coronaInfo={coronaInfo}
+              url={url}
+              modalVisible={modalVisible}
+            />
+          </NavigationContainer>
+        ),
+      });
+    }, 6000);
+  };
+
   const onSelectCountry = async () => {
     console.log(selectedCountry);
     const link =
@@ -103,10 +105,27 @@ export default function App() {
         setCoronaInfo(data);
       });
   };
+
   return (
     <View style={styles.container}>
       {/* {component.comp} */}
-      <WelcomeScreen />
+      {/* <WelcomeScreen /> */}
+      <NavigationContainer>
+        <AppNavigator
+          countryList={countries}
+          onPressModalVisiblityOn={modalOn}
+          onPressModalVisiblityOff={modalOff}
+          selectedCountry={selectedCountry}
+          onPressWorldWide={() => {
+            setSelectedCountry("WorldWide");
+            setModalVisible(false);
+          }}
+          onPressSetSelectedCountry={onPressSetSelectedCountry}
+          coronaInfo={coronaInfo}
+          url={url}
+          modalVisible={modalVisible}
+        />
+      </NavigationContainer>
     </View>
   );
 }
