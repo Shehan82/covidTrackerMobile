@@ -28,7 +28,7 @@ const CasesScreen = ({
 }) => {
   return (
     <ImageBackground
-      source={require("../../assets/4.png")}
+      source={require("../../assets/7.png")}
       style={styles.image}
     >
       <View style={styles.container}>
