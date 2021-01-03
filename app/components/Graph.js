@@ -9,23 +9,9 @@ import {
   VictoryAxis,
   VictoryArea,
 } from "victory-native";
-import Apptext from "./Apptext";
-
-const data1 = [
-  { quarter: 1, earnings: 13000 },
-  { quarter: 2, earnings: 16500 },
-  { quarter: 3, earnings: 14250 },
-  { quarter: 4, earnings: 5000 },
-  { quarter: 5, earnings: 5000 },
-  { quarter: 6, earnings: 13000 },
-  { quarter: 7, earnings: 16500 },
-  { quarter: 8, earnings: 14250 },
-  { quarter: 9, earnings: 5000 },
-  { quarter: 10, earnings: 5000 },
-];
 
 const Graph = ({ url, country, keyword }) => {
-  console.log(url);
+  // console.log(url);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -33,6 +19,11 @@ const Graph = ({ url, country, keyword }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+
+        if (data.message != null) {
+          return setData([{ data: "provided", date: "No data" }]);
+        }
+
         const diff = (cases) => {
           var dataArr = Object.values(cases);
           var newArr = [];
@@ -98,7 +89,7 @@ const Graph = ({ url, country, keyword }) => {
     <View style={styles.container}>
       <View style={styles.subContainer}>
         <View style={styles.txtContainer}>
-          <Text style={styles.txtHeader}>
+          <Text numberOfLines={1} style={styles.txtHeader}>
             {country} Corona {keyword}
           </Text>
           <Text style={styles.txtHeader}> last 10 Days</Text>
