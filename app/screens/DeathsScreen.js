@@ -8,6 +8,8 @@ import {
   Image,
   Platform,
   ImageBackground,
+  ScrollView,
+  SafeAreaView,
 } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
@@ -48,37 +50,39 @@ const DeathsScreen = ({
                 <Text style={styles.txtClose}>Close</Text>
               </View>
             </TouchableWithoutFeedback>
-            <FlatList
-              data={countryList}
-              keyExtractor={(item) => item.name}
-              ListHeaderComponent={() => (
-                <TouchableWithoutFeedback onPress={onPressWorldWide}>
-                  <View style={styles.wwContainer}>
-                    <Text style={styles.txt}>WorldWide</Text>
-                    <Image
-                      style={{ width: 30, height: 30, borderRadius: 15 }}
-                      source={require("../../assets/world.jpeg")}
-                    />
-                  </View>
-                </TouchableWithoutFeedback>
-              )}
-              renderItem={({ item }) => (
-                <TouchableWithoutFeedback
-                  onPress={() => {
-                    onPressSetSelectedCountry(item.name);
-                    onPressModalVisiblityOff();
-                  }}
-                >
-                  <View style={styles.tContainer}>
-                    <Text style={styles.txt}>{item.name}</Text>
-                    <Image
-                      style={{ width: 30, height: 30, borderRadius: 15 }}
-                      source={{ uri: item.flag }}
-                    />
-                  </View>
-                </TouchableWithoutFeedback>
-              )}
-            />
+            <SafeAreaView style={{ flex: 1 }}>
+              <FlatList
+                data={countryList}
+                keyExtractor={(item) => item.name}
+                ListHeaderComponent={() => (
+                  <TouchableWithoutFeedback onPress={onPressWorldWide}>
+                    <View style={styles.wwContainer}>
+                      <Text style={styles.txt}>WorldWide</Text>
+                      <Image
+                        style={{ width: 30, height: 30, borderRadius: 15 }}
+                        source={require("../../assets/world.jpeg")}
+                      />
+                    </View>
+                  </TouchableWithoutFeedback>
+                )}
+                renderItem={({ item }) => (
+                  <TouchableWithoutFeedback
+                    onPress={() => {
+                      onPressSetSelectedCountry(item.name);
+                      onPressModalVisiblityOff();
+                    }}
+                  >
+                    <View style={styles.tContainer}>
+                      <Text style={styles.txt}>{item.name}</Text>
+                      <Image
+                        style={{ width: 30, height: 30, borderRadius: 15 }}
+                        source={{ uri: item.flag }}
+                      />
+                    </View>
+                  </TouchableWithoutFeedback>
+                )}
+              />
+            </SafeAreaView>
           </View>
         </Modal>
       </View>

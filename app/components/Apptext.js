@@ -13,6 +13,7 @@ const Apptext = ({ title, size, marginBtm = 0 }) => {
           fontSize: size,
           fontFamily: Platform.OS === "ios" ? "Avenir" : "Roboto",
         }}
+        numberOfLines={1}
       >
         {title}
       </Text>
