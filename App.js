@@ -186,8 +186,16 @@ function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="welcome" component={WelcomeScreen} />
-          <Stack.Screen name="app" component={SubApp} />
+          <Stack.Screen
+            name="welcome"
+            component={WelcomeScreen}
+            options={{ gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="app"
+            component={SubApp}
+            options={{ gestureEnabled: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
