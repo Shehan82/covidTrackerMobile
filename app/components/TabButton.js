@@ -7,6 +7,7 @@ const TabButton = ({ onPress, name, bgColor }) => {
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.container, { backgroundColor: bgColor }]}>
         <MaterialCommunityIcons name={name} color="white" size={30} />
+        <Text>skdfjhsdfsjkh</Text>
       </View>
     </TouchableOpacity>
   );
