@@ -9,7 +9,6 @@ import {
   Platform,
   ImageBackground,
   ScrollView,
-  SafeAreaView,
 } from "react-native";
 import Header from "../components/Header";
 import Constant from "expo-constants";
