@@ -9,6 +9,8 @@ You can use it on Android and ios mobile devices, through expo client mobile app
 
 Link  - https://expo.io/@shehan82/projects/covidTrackerMobile
 
+Download the apk here - https://drive.google.com/file/d/1GBjS1hdV_bz47Gf8k2OGKV4GNA_Mb6Gm/view?usp=sharing
+
 
 
 <div style="display:flex;  margin:30px; flex-direction:raw;  justify-content: space-around;  width:100%;">
